@@ -10,7 +10,7 @@ if (! P) {
     console.warn('your nodejs version does not natively support global.Promise,'
         + ' you must pass your custom class, i.e. request.use(require("bluebird")); '
         + ' see https://github.com/akhoury/request-promise-cache#other-promise-libraries'
-    )
+    );
 }
 
 function promisifyAndCachifyRequest (r, options) {
@@ -28,7 +28,7 @@ function promisifyAndCachifyRequest (r, options) {
         var promise = new P(function(resolve, reject) {
 
             var fresh = params.fresh;
-            var cacheKey = params.cacheKey;
+            var cacheKey = params.cacheKey || (params.baseUrl || '') + (params.url || params.uri);
             var cacheTTL = params.cacheTTL;
             var cacheLimit = params.cacheLimit;
 
@@ -111,4 +111,3 @@ requestPromiseCache.use = function (CustomPromise) {
 };
 
 module.exports = requestPromiseCache;
-
