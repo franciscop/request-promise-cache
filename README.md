@@ -5,10 +5,8 @@ Request.js wrapper that uses promises and cache:
 ```javascript
 const request = require('request-promise-cache');
 
-const url = 'https://google.com/';
 request({
-  url: url,
-  cacheKey: url,
+  url: 'https://google.com/',
   cacheTTL: 60 * 60 * 1000,  // 1h = 60min * 60s * 1000ms
   cacheLimit: 12
 }).then(function(ret) {
